@@ -1,9 +1,8 @@
-"use client";
+﻿"use client";
 
 import {
   Bot,
   Database,
-  FlaskConical,
   GraduationCap,
   LayoutDashboard,
   Workflow
@@ -13,11 +12,8 @@ import { HoverButton } from "@/components/ui/hover-button";
 
 const navItems = [
   { label: "Overview", icon: LayoutDashboard, target: "overview" },
-  { label: "Master Agent", icon: Bot, target: "master-agent" },
-  { label: "Workflow Queue", icon: Workflow, target: "workflow-queue" },
-  { label: "Scholarship Scanner", icon: GraduationCap, target: "scholarship-intelligence" },
-  { label: "Research Monitor", icon: FlaskConical, target: "research-intelligence" },
-  { label: "Memory Vault", icon: Database, target: "memory-vault" }
+  { label: "Workflows", icon: Workflow, target: "workflow-queue" },
+  { label: "Agents", icon: Bot, target: "master-agent" },
 ];
 
 export function AppShell({ children }: Readonly<{ children: React.ReactNode }>) {
@@ -26,37 +22,26 @@ export function AppShell({ children }: Readonly<{ children: React.ReactNode }>) 
   }
 
   return (
-    <main className="app-backdrop min-h-screen lg:grid lg:grid-cols-[232px_1fr]">
-      <aside className="border-b border-white/10 bg-ink/95 text-white shadow-[8px_0_40px_rgba(10,12,16,0.18)] lg:min-h-screen lg:border-b-0 lg:border-r">
-        <div className="flex h-20 items-center gap-3 px-5">
+    <main className="app-backdrop min-h-screen bg-gradient-to-br from-sky-900 via-indigo-900 to-rose-900 text-white lg:grid lg:grid-cols-[96px_1fr]">
+      <aside className="border-b border-white/6 bg-white/6/10 text-white shadow-[8px_0_40px_rgba(10,12,16,0.18)] lg:min-h-screen lg:border-b-0 lg:border-r">
+        <div className="flex h-20 items-center gap-3 px-3">
           <div className="flex h-10 w-10 items-center justify-center rounded-md bg-brass text-ink">
             <Bot size={20} aria-hidden="true" />
           </div>
-          <div>
-            <p className="text-sm font-semibold leading-5">Personal AI OS</p>
-            <p className="text-xs text-white/62">Autonomous command layer</p>
-          </div>
         </div>
-        <nav className="flex gap-2 overflow-x-auto px-3 pb-3 lg:block lg:space-y-2 lg:overflow-visible">
+        <nav className="flex flex-col gap-2 px-2 pb-3">
           {navItems.map((item) => (
             <HoverButton
               key={item.label}
-              className="h-10 min-w-max rounded-md bg-white/[0.06] px-3 py-2 text-sm text-white/80 hover:text-white lg:w-full lg:justify-start"
+              className="h-12 w-12 rounded-md bg-white/[0.04] p-2 text-sm text-white/90 flex items-center justify-center"
               type="button"
               title={item.label}
               onClick={() => goToSection(item.target)}
             >
-              <item.icon size={17} aria-hidden="true" />
-              <span>{item.label}</span>
+              <item.icon size={18} aria-hidden="true" />
             </HoverButton>
           ))}
         </nav>
-        <div className="hidden px-5 pt-6 lg:block">
-          <div className="rounded-md border border-white/10 bg-white/[0.04] p-3">
-            <p className="text-xs font-semibold uppercase text-brass">Mode</p>
-            <p className="mt-2 text-sm leading-5 text-white/78">Private multi-agent workspace</p>
-          </div>
-        </div>
       </aside>
       <section className="min-w-0">{children}</section>
     </main>
