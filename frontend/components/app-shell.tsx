@@ -21,6 +21,17 @@ export function AppShell({ children }: Readonly<{ children: React.ReactNode }>) 
     document.getElementById(target)?.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
+  // hide nav items when user is not authenticated
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  React.useEffect(() => {
+    try {
+      const t = localStorage.getItem('access_token');
+      setIsLoggedIn(Boolean(t));
+    } catch (e) {
+      setIsLoggedIn(false);
+    }
+  }, []);
+
   return (
     <main className="app-backdrop min-h-screen bg-gradient-to-br from-sky-900 via-indigo-900 to-rose-900 text-white lg:grid lg:grid-cols-[96px_1fr]">
       <aside className="border-b border-white/6 bg-white/6/10 text-white shadow-[8px_0_40px_rgba(10,12,16,0.18)] lg:min-h-screen lg:border-b-0 lg:border-r">
@@ -30,7 +41,7 @@ export function AppShell({ children }: Readonly<{ children: React.ReactNode }>) 
           </div>
         </div>
         <nav className="flex flex-col gap-2 px-2 pb-3">
-          {navItems.map((item) => (
+          {isLoggedIn && navItems.map((item) => (
             <HoverButton
               key={item.label}
               className="h-12 w-12 rounded-md bg-white/[0.04] p-2 text-sm text-white/90 flex items-center justify-center"
