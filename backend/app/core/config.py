@@ -49,6 +49,11 @@ class Settings(BaseSettings):
     smtp_password: str | None = None
     smtp_from: str | None = None
 
+    # Google OAuth2
+    google_client_id: str | None = None
+    google_client_secret: str | None = None
+    google_redirect_uri: str | None = None
+
     gcp_project_id: str | None = None
     gcp_region: str = "europe-west1"
 

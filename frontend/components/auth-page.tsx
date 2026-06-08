@@ -13,8 +13,14 @@ export function AuthPage() {
   const [code, setCode] = useState('');
   const [message, setMessage] = useState<string | null>(null);
 
+  const [consent, setConsent] = useState(false);
+
   async function requestCode() {
     setMessage(null);
+    if (!consent) {
+      setMessage('You must agree to Terms of Service and Privacy Policy');
+      return;
+    }
     try {
       const res = await fetch('/api/v1/auth/request-code', {
         method: 'POST',
@@ -121,10 +127,16 @@ export function AuthPage() {
             </div>
 
             {!codeRequested ? (
-              <Button type="button" className="w-full" onClick={requestCode}>
-                <span>Continue With Email</span>
-              </Button>
-            ) : (
+                <>
+                  <div className="flex items-center gap-2">
+                    <input id="consent" type="checkbox" checked={consent} onChange={(e) => setConsent(e.target.checked)} />
+                    <label htmlFor="consent" className="text-sm text-muted-foreground">I agree to the Terms of Service and Privacy Policy</label>
+                  </div>
+                  <Button type="button" className="w-full" onClick={requestCode}>
+                    <span>Continue With Email</span>
+                  </Button>
+                </>
+              ) : (
               <div className="space-y-2">
                 <Input placeholder="Enter code" value={code} onChange={(e) => setCode(e.target.value)} />
                 <Button type="button" className="w-full" onClick={verifyCode}>Verify Code</Button>
