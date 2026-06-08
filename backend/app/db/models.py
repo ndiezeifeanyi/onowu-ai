@@ -239,6 +239,16 @@ class Notification(Base, TimestampMixin):
     metadata_json: Mapped[dict] = mapped_column("metadata", JSON, default=dict, nullable=False)
 
 
+class EmailOTP(Base, TimestampMixin):
+    __tablename__ = "email_otps"
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=uuid_pk)
+    email: Mapped[str] = mapped_column(String(320), nullable=False, index=True)
+    code_hash: Mapped[str] = mapped_column(String(512), nullable=False)
+    expires_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False)
+    consumed: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
+
+
 class Report(Base, TimestampMixin):
     __tablename__ = "reports"
 

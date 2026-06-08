@@ -10,7 +10,10 @@ from app.services.auth_service import (
     get_user_by_id,
     issue_tokens,
     register_user,
+    create_login_code,
+    verify_login_code,
 )
+from app.schemas.api import RequestCodeRequest, VerifyCodeRequest
 
 router = APIRouter()
 
@@ -46,4 +49,18 @@ async def refresh(payload: RefreshRequest, session: AsyncSession = Depends(get_d
 @router.get("/me", response_model=UserRead)
 async def me(user=Depends(get_current_user)):
     return user
+
+
+@router.post("/request-code")
+async def request_code(payload: RequestCodeRequest, session: AsyncSession = Depends(get_db)):
+    await create_login_code(session, payload.email)
+    return {"ok": True}
+
+
+@router.post("/verify-code", response_model=TokenPair)
+async def verify_code(payload: VerifyCodeRequest, session: AsyncSession = Depends(get_db)):
+    user = await verify_login_code(session, payload.email, payload.code)
+    if user is None:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid code")
+    return issue_tokens(user)
 
