@@ -17,7 +17,7 @@ function IntelligenceList({
   items: IntelligenceItem[];
 }) {
   return (
-    <section id={id} className="rounded-md border border-[var(--line)] bg-white/86 p-4 shadow-soft">
+    <section id={id} className="rounded-md border border-white/10 bg-ink text-white p-4 shadow-soft">
       <div className="mb-4 flex items-center justify-between gap-3">
         <div className="flex items-center gap-2">
           <Icon size={18} aria-hidden="true" />
@@ -27,11 +27,11 @@ function IntelligenceList({
       </div>
       <div className="space-y-3">
         {items.map((item) => (
-          <article key={`${item.source}-${item.title}`} className="rounded-md border border-[var(--line)] bg-panel/95 p-3">
+          <article key={`${item.source}-${item.title}`} className="rounded-md border border-white/10 bg-white/10 p-3">
             <div className="flex items-start justify-between gap-3">
               <div>
                 <h3 className="text-sm font-semibold">{item.title}</h3>
-                <p className="mt-1 text-xs text-[var(--muted)]">
+                <p className="mt-1 text-xs text-white/60">
                   {item.source}
                   {item.deadline ? ` - ${item.deadline}` : ""}
                 </p>
@@ -39,7 +39,7 @@ function IntelligenceList({
               <div className="flex shrink-0 items-center gap-2">
                 <span className="rounded bg-moss px-2 py-1 text-xs font-semibold text-white">{item.score}</span>
                 <HoverButton
-                  className="h-8 w-8 rounded-md bg-white px-0 py-0 text-ink"
+                  className="h-8 w-8 rounded-md bg-white/20 px-0 py-0 text-white hover:bg-white/30"
                   type="button"
                   title={`Open ${item.source}`}
                   onClick={() => window.open(item.url, "_blank", "noopener,noreferrer")}
@@ -50,7 +50,7 @@ function IntelligenceList({
             </div>
             <div className="mt-3 flex flex-wrap gap-2">
               {item.tags.map((tag) => (
-                <span key={tag} className="rounded border border-[var(--line)] bg-white px-2 py-1 text-xs text-ink">
+                <span key={tag} className="rounded border border-white/10 bg-white/10 px-2 py-1 text-xs text-white">
                   {tag}
                 </span>
               ))}

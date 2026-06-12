@@ -61,25 +61,16 @@ export function AuthPage() {
 
   return (
     <main className="relative md:h-screen md:overflow-hidden lg:grid lg:grid-cols-2">
-      <div className="bg-muted/60 relative hidden h-full flex-col border-r p-10 lg:flex">
-        <div className="from-background absolute inset-0 z-10 bg-gradient-to-t to-transparent" />
-        <div className="z-10 flex items-center gap-2">
-          <Grid2x2PlusIcon className="size-6" />
-          <p className="text-xl font-semibold">Asme</p>
+        <div className="bg-muted/60 relative hidden h-full flex-col border-r p-10 lg:flex">
+          <div className="from-background absolute inset-0 z-10 bg-gradient-to-t to-transparent" />
+          <div className="z-10 flex items-center gap-2">
+            <Grid2x2PlusIcon className="size-6" />
+            <p className="text-xl font-semibold">ONOWU AI</p>
+          </div>
+          <div className="absolute inset-0">
+            {/* Decorative paths handled by BackgroundPaths on homepage */}
+          </div>
         </div>
-        <div className="z-10 mt-auto">
-          <blockquote className="space-y-2">
-            <p className="text-xl">
-              &ldquo;This Platform has helped me to save time and serve my
-              clients faster than ever before.&rdquo;
-            </p>
-            <footer className="font-mono text-sm font-semibold">~ Ali Hassan</footer>
-          </blockquote>
-        </div>
-        <div className="absolute inset-0">
-          {/* Decorative paths handled by BackgroundPaths on homepage */}
-        </div>
-      </div>
       <div className="relative flex min-h-screen flex-col justify-center p-4">
         <div
           aria-hidden
@@ -92,7 +83,7 @@ export function AuthPage() {
         <div className="mx-auto space-y-4 sm:w-sm">
           <div className="flex items-center gap-2 lg:hidden">
             <Grid2x2PlusIcon className="size-6" />
-            <p className="text-xl font-semibold">Asme</p>
+            <p className="text-xl font-semibold">ONOWU AI</p>
           </div>
           <div className="flex flex-col space-y-1">
             <h1 className="font-heading text-2xl font-bold tracking-wide">Sign In or Join Now!</h1>
@@ -100,13 +91,13 @@ export function AuthPage() {
           </div>
 
           <div className="space-y-2">
-            <Button type="button" size="lg" className="w-full" onClick={handleGoogle}>
+            <Button type="button" className="w-full" onClick={handleGoogle}>
               <span className="me-2">Continue with Google</span>
             </Button>
-            <Button type="button" size="lg" className="w-full">
+            <Button type="button" className="w-full">
               <span className="me-2">Continue with Apple</span>
             </Button>
-            <Button type="button" size="lg" className="w-full">
+            <Button type="button" className="w-full">
               <span className="me-2">Continue with GitHub</span>
             </Button>
           </div>

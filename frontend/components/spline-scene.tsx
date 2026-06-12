@@ -17,7 +17,6 @@ export function SplineScene({ scene, className }: SplineSceneProps) {
         </div>
       }
     >
-      {/* @ts-ignore - dynamic import for Spline */}
       <Spline scene={scene} className={className} />
     </Suspense>
   )

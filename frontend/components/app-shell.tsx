@@ -1,12 +1,6 @@
 ﻿"use client";
 import { useState, useEffect } from 'react';
-import {
-  Bot,
-  Database,
-  GraduationCap,
-  LayoutDashboard,
-  Workflow
-} from "lucide-react";
+import { Bot, LayoutDashboard, Workflow } from "lucide-react";
 
 import { HoverButton } from "@/components/ui/hover-button";
 
@@ -27,14 +21,14 @@ export function AppShell({ children }: Readonly<{ children: React.ReactNode }>) 
     try {
       const t = localStorage.getItem('access_token');
       setIsLoggedIn(Boolean(t));
-    } catch (e) {
+    } catch {
       setIsLoggedIn(false);
     }
   }, []);
 
   return (
     <main className="app-backdrop min-h-screen bg-gradient-to-br from-sky-900 via-indigo-900 to-rose-900 text-white lg:grid lg:grid-cols-[96px_1fr]">
-      <aside className="border-b border-white/6 bg-white/6/10 text-white shadow-[8px_0_40px_rgba(10,12,16,0.18)] lg:min-h-screen lg:border-b-0 lg:border-r">
+      <aside className="border-b border-white/10 bg-ink/95 text-white shadow-soft backdrop-blur-xl lg:min-h-screen lg:border-b-0 lg:border-r lg:border-white/10">
         <div className="flex h-20 items-center gap-3 px-3">
           <div className="flex h-10 w-10 items-center justify-center rounded-md bg-brass text-ink">
             <Bot size={20} aria-hidden="true" />
