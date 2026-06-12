@@ -1,5 +1,5 @@
 ﻿"use client";
-
+import { useState, useEffect } from 'react';
 import {
   Bot,
   Database,
@@ -22,8 +22,8 @@ export function AppShell({ children }: Readonly<{ children: React.ReactNode }>) 
   }
 
   // hide nav items when user is not authenticated
-  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
-  React.useEffect(() => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  useEffect(() => {
     try {
       const t = localStorage.getItem('access_token');
       setIsLoggedIn(Boolean(t));
