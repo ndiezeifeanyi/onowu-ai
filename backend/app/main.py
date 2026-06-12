@@ -9,6 +9,7 @@ from app.core.config import get_settings
 from app.core.logging import configure_logging, get_logger
 from app.db.bootstrap import create_tables, seed_defaults
 from app.db.session import AsyncSessionLocal
+from app.security.middleware import ProductionSecurityMiddleware
 
 settings = get_settings()
 configure_logging()
@@ -39,6 +40,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Security middleware that validates ingress requests and sanitizes payloads
+app.add_middleware(ProductionSecurityMiddleware)
 
 app.include_router(api_router, prefix=settings.api_v1_prefix)
 
